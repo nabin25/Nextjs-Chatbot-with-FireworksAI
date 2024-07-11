@@ -1,12 +1,24 @@
 .header{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 10vh;
+    width: 75%;
+    margin: auto;
+}
+.header .new-chat{
+    border: none;
+    padding: 5px 16px 5px 16px;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, rgba(30, 81, 31, 0.5), rgba(51, 142, 29, 0.5));
+}
+.header .new-chat:hover{
+    background-image: linear-gradient(to right, rgba(30, 81, 31, 0.7), rgba(51, 142, 29, 0.7));
 }
 @media (max-width:680px) {
     .header{
         height:4vh;
         font-size: 10px;
+        width: 90%;
     }
 }

@@ -60,7 +60,8 @@
         font-size: 12px;
     }
     .sub-div{
-        width:90%
+        width:90%;
+        gap: 5px;
     }
     
 }

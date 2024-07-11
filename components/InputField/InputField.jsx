@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { useState } from 'react'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { StoreContext } from '@/app/context/StoreContext'
 import './InputField.css'
 var apiKey = process.env.NEXT_PUBLIC_FIREWORK_API_KEY
@@ -13,8 +13,14 @@ const InputField = () => {
     // message===''?setIsDisabled(true):setIsDisabled(false)
   var index = 0;
   var replyMessage = ''
-  const {addMessageToChain} = useContext(StoreContext)
-
+  const {addMessageToChain, newChat, setNewChat, setMessageChain} = useContext(StoreContext)
+  useEffect(() => {
+    if (newChat) {
+      messageChain1 = [{"role":"system", "content":"You are a helpful assistant. Answer with negative feedback if the questions are not related."}]
+      setMessageChain([{"index": 0,"role":"system", "content":"You are a helpful assistant."}]);
+      setNewChat(false);
+    }
+  }, [newChat, setMessageChain, setNewChat]);
   const buildOption = ()=>{
     console.log(apiKey)
     if(messageChain1.length>10){
@@ -61,6 +67,7 @@ const InputField = () => {
       addMessageToChain(index, "assistant", replyMessage);
       messageChain1.push({"role": "assistant", "content": replyMessage})
     }
+    console.log()
     // console.log(messageChain1)
 //   const submitMessage = ()=>{
 //     return(
