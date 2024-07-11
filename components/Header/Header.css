@@ -4,3 +4,9 @@
     justify-content: center;
     height: 10vh;
 }
+@media (max-width:680px) {
+    .header{
+        height:4vh;
+        font-size: 10px;
+    }
+}

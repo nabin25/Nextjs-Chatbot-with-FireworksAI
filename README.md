@@ -1,4 +1,4 @@
-# Nextjs-Chatbot-with-FireworksAI
+## Nextjs-Chatbot-with-FireworksAI
 ***
 This is a chatbot created with Nextjs framework which uses Fireworks AI API for fetching the response.
 ***

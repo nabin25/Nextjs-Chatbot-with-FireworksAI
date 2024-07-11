@@ -9,6 +9,8 @@ let messageChain1 = [{"role":"system", "content":"You are a helpful assistant. A
 
 const InputField = () => {
     const [message, setMessage] = useState('');
+    var isDisabled = message===''
+    // message===''?setIsDisabled(true):setIsDisabled(false)
   var index = 0;
   var replyMessage = ''
   const {addMessageToChain} = useContext(StoreContext)
@@ -75,7 +77,10 @@ const InputField = () => {
     <div className='input-div'>
       <div className='sub-div'>
         <input placeholder='Enter your message here' className='input-field' value={message} onChange={handleChange} type="text"/>
-        <button className='button' onClick={()=>submitMessage()}>Send Message</button>
+        <button className='button' disabled={isDisabled} onClick={()=>submitMessage()}>
+          <p className='button-text'>Send Message</p>
+          <p className='button-text-small'>Send</p>
+        </button>
       </div>
     </div>
   )

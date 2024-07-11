@@ -13,10 +13,10 @@
     animation: scaleUp 0.5s;
 }
 .user p{
-    background-image: linear-gradient(to right,rgb(14, 41, 110),rgb(63, 80, 207) ); 
+    background-image: linear-gradient(to right,rgba(89, 69, 7, 0.4),rgba(203, 167, 37, 0.4) ); 
 }  
 .assistant p{
-    background-image: linear-gradient(to right,rgb(8, 92, 8),rgb(73, 198, 121) ); 
+    background-image: linear-gradient(to right,rgba(8, 92, 8,0.4),rgba(73, 198, 121, 0.4) ); 
 }
 .message{
     width: 100%;

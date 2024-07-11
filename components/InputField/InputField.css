@@ -32,11 +32,35 @@
     border: none;
     width: 15%;
     height: 10vh;
-    font-size: 20px;
+    font-size: 18px;
     background-image: linear-gradient(to right, rgba(43, 151, 175,0.9), rgb(67, 200, 230,0.9));
     transition: 0.5s;
 }
 .button:hover{
     transform: scale(1.02);
     background-image: linear-gradient(to right, rgba(43, 151, 175,1), rgb(67, 200, 230,1));
+}
+.button .button-text-small{
+    display: none;
+}
+
+@media (max-width: 680px){
+    .button .button-text{
+        display: none;
+    }
+    .button .button-text-small{
+        display:block;
+        font-size: 15px;
+    }
+    .button{
+        height:5vh;
+    }
+    .input-field{
+        height: 5vh;
+        font-size: 12px;
+    }
+    .sub-div{
+        width:90%
+    }
+    
 }
