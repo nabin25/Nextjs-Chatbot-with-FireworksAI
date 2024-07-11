@@ -1,0 +1,42 @@
+.input-div{
+    position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 20px;
+}
+.sub-div{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    gap:15px;
+  justify-content: center;
+}
+.input-field{
+    width:80%;
+    height: 10vh;
+    font-size: 20px;
+    border-radius: 20px 0px 0px 20px;
+    padding: 5px 20px 5px 20px;
+    background-color: rgba(74, 210, 241,0.3);
+    border: none;
+    transition: 0.5s;
+}
+.input-field:focus{
+    transform: scaleX(1.02);
+    box-shadow: 2px 2px #aaa;
+}
+.button{
+    margin-left: 3px;
+    border-radius: 0px 20px 20px 0px;
+    border: none;
+    width: 15%;
+    height: 10vh;
+    font-size: 20px;
+    background-image: linear-gradient(to right, rgba(43, 151, 175,0.9), rgb(67, 200, 230,0.9));
+    transition: 0.5s;
+}
+.button:hover{
+    transform: scale(1.02);
+    background-image: linear-gradient(to right, rgba(43, 151, 175,1), rgb(67, 200, 230,1));
+}

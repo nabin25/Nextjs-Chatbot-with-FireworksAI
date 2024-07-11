@@ -1,0 +1,34 @@
+
+
+.message-container{
+    width: 75%;
+    height: 75vh;
+    display: flex;
+    overflow-y: scroll;
+    margin: 5px auto;
+    flex-direction: column;
+    background: url('./background.jpg');
+    background-size: contain;
+}
+.message-container::-webkit-scrollbar{
+    display: none;
+}
+.empty-chat-container{
+    display:flex;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+.start-chat{
+    font-size: 30px;
+}
+
+@keyframes scaleUp {
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
