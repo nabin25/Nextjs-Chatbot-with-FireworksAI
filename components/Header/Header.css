@@ -17,7 +17,7 @@
 }
 @media (max-width:680px) {
     .header{
-        height:4vh;
+        height:8vh;
         font-size: 10px;
         width: 90%;
     }

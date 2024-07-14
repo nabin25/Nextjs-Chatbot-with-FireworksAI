@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { useState } from 'react'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import { StoreContext } from '@/app/context/StoreContext'
 import './InputField.css'
 var apiKey = process.env.NEXT_PUBLIC_FIREWORK_API_KEY
@@ -9,7 +9,9 @@ let messageChain1 = [{"role":"system", "content":"You are a helpful assistant. A
 
 const InputField = () => {
     const [message, setMessage] = useState('');
-    var isDisabled = message===''
+    var isDisabled = message==='';
+    const inputRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
   var index = 0;
   var replyMessage = ''
   const {addMessageToChain, newChat, setNewChat, setMessageChain} = useContext(StoreContext)
@@ -22,7 +24,7 @@ const InputField = () => {
   }, [newChat, setMessageChain, setNewChat]);
   const buildOption = ()=>{
     if(messageChain1.length>10){
-      messageChain1.slice(0,-9);
+      messageChain1.slice(-9);
       messageChain1 = [{"role":"system", "content":"You are a helpful assistant. Answer with negative feedback if the questions are not related."}, ...messageChain1];
     }
 
@@ -45,6 +47,7 @@ const InputField = () => {
   }
   const checkEnter = (e)=>{
     if(message!=='' && e.key==="Enter"){
+      setIsLoading(true)
       submitMessage();
     }
   }
@@ -63,6 +66,8 @@ const InputField = () => {
       index+=1; 
       addMessageToChain(index, "assistant", replyMessage);
       messageChain1.push({"role": "assistant", "content": replyMessage})
+      setIsLoading(false);
+      inputRef.current.focus();
     }
     // console.log(messageChain1)
 //   const submitMessage = ()=>{
@@ -79,8 +84,15 @@ const InputField = () => {
   return (
     <div className='input-div'>
       <div className='sub-div'>
-        <input placeholder='Enter your message here' className='input-field' value={message} onChange={handleChange} onKeyUp={checkEnter} type="text"/>
-        <button className='button' disabled={isDisabled} onClick={()=>submitMessage()}>
+        <input placeholder='Enter your message here' 
+          disabled={isLoading} 
+          className='input-field' value={message} 
+          onChange={handleChange} 
+          onKeyDown={checkEnter} 
+          type="text"
+          ref={inputRef}
+        />
+        <button className='button' disabled={isDisabled || isLoading} onClick={()=>submitMessage()}>
           <p className='button-text'>Send Message</p>
           <p className='button-text-small'>Send</p>
         </button>

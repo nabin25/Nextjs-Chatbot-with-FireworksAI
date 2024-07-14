@@ -21,13 +21,15 @@
 }
 .start-chat{
     font-size: 30px;
+    text-align: center;
+    color: #fff;
 }
 
 @media (max-width: 680px) {
     .message-container{
         width: 90%;
         height: 81vh;
-        margin-bottom: 15vh;
+        margin-bottom: 10vh;
     }
 }
 
