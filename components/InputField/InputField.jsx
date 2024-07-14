@@ -10,7 +10,6 @@ let messageChain1 = [{"role":"system", "content":"You are a helpful assistant. A
 const InputField = () => {
     const [message, setMessage] = useState('');
     var isDisabled = message===''
-    // message===''?setIsDisabled(true):setIsDisabled(false)
   var index = 0;
   var replyMessage = ''
   const {addMessageToChain, newChat, setNewChat, setMessageChain} = useContext(StoreContext)
@@ -22,7 +21,6 @@ const InputField = () => {
     }
   }, [newChat, setMessageChain, setNewChat]);
   const buildOption = ()=>{
-    console.log(apiKey)
     if(messageChain1.length>10){
       messageChain1.slice(0,-9);
       messageChain1 = [{"role":"system", "content":"You are a helpful assistant. Answer with negative feedback if the questions are not related."}, ...messageChain1];
@@ -30,8 +28,6 @@ const InputField = () => {
 
     var bodyObject = {
       model: "accounts/fireworks/models/llama-v3-70b-instruct",
-      // messages: messageChain,
-      // messages: [{"role":"user","content":"Hello"}],
       messages: messageChain1,
       max_tokens: 50,
       temperature: 0.6
@@ -45,29 +41,29 @@ const InputField = () => {
       },
       body: JSON.stringify(bodyObject)
     }
-    // console.log(messageChain)
     return options;
+  }
+  const checkEnter = (e)=>{
+    if(message!=='' && e.key==="Enter"){
+      submitMessage();
+    }
   }
   
    async function  submitMessage(){
       index+=1;
       addMessageToChain(index, "user", message);
       messageChain1.push({"role": "user", "content": message})
+      setMessage('')
       const options = buildOption();
       await fetch('https://api.fireworks.ai/inference/v1/chat/completions', options)
           .then(response => response.json())
-          // .then(response => console.log(response))
           .then(response => replyMessage = response.choices[0].message.content)
-          // .then(addMessageToChain("assistant", replyMessage))
-          // .then(console.log(messageChain1))
-          // .then(console.log(messageChain))
           .catch(err => console.error(err))
-      setMessage('')
+      
       index+=1; 
       addMessageToChain(index, "assistant", replyMessage);
       messageChain1.push({"role": "assistant", "content": replyMessage})
     }
-    console.log()
     // console.log(messageChain1)
 //   const submitMessage = ()=>{
 //     return(
@@ -83,7 +79,7 @@ const InputField = () => {
   return (
     <div className='input-div'>
       <div className='sub-div'>
-        <input placeholder='Enter your message here' className='input-field' value={message} onChange={handleChange} type="text"/>
+        <input placeholder='Enter your message here' className='input-field' value={message} onChange={handleChange} onKeyUp={checkEnter} type="text"/>
         <button className='button' disabled={isDisabled} onClick={()=>submitMessage()}>
           <p className='button-text'>Send Message</p>
           <p className='button-text-small'>Send</p>

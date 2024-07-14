@@ -1,6 +1,6 @@
 .message-container{
     width: 75%;
-    height: 75vh;
+    height: 70vh;
     display: flex;
     overflow-y: scroll;
     margin: 5px auto;
@@ -27,6 +27,7 @@
     .message-container{
         width: 90%;
         height: 81vh;
+        margin-bottom: 15vh;
     }
 }
 
