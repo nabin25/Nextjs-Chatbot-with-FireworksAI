@@ -22,6 +22,9 @@ const InputField = () => {
       setNewChat(false);
     }
   }, [newChat, setMessageChain, setNewChat]);
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [isLoading]);
   const buildOption = ()=>{
     if(messageChain1.length>10){
       messageChain1.slice(-9);
@@ -69,17 +72,7 @@ const InputField = () => {
       setIsLoading(false);
       inputRef.current.focus();
     }
-    // console.log(messageChain1)
-//   const submitMessage = ()=>{
-//     return(
-//       fetch('https://api.fireworks.ai/inference/v1/chat/completions', options)
-//         .then(response => response.json())
-//         // .then(response => console.log(response))
-//         .then(response =>setReplyMessage(response.choices[0].message.content))
-//         .then(addMessageToChain("assistant", replyMessage))
-//         .catch(err => console.error(err))
-//     )
-//   }
+    
   const handleChange = (e) => setMessage(e.target.value)
   return (
     <div className='input-div'>
