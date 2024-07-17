@@ -6,7 +6,7 @@ This is a chatbot created with Nextjs framework which uses Fireworks AI API for 
 To view the demo of the chatbot
 > - Clone this repository.
 
-> - Create a `.env.local` file on the same level as the app folder
+> - Rename the `.env.local.example` file to `.env.local`
 
 > - Inside the .env.local file place your API key as <br>
 `NEXT_PUBLIC_FIREWORK_API_KEY=< yourAPIKey >`<br>
